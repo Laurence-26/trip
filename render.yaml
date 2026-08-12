@@ -1,11 +1,11 @@
 services:
-  # Driver web app — static site (PWA)
+  # Unified web app — Driver + Owner with role selection (PWA)
   - type: web
-    name: trips-driver
+    name: trips-fleet
     env: static
     rootDir: web
-    buildCommand: npm install && npm run build:driver
-    staticPublishPath: dist-driver
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
     headers:
       - path: /sw.js
         name: Cache-Control

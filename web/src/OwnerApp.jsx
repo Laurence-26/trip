@@ -1164,7 +1164,7 @@ function SettingsModal({ onClose, lang, setLang, pinEnabled, setPinEnabled, stor
 }
 
 // ── Main ───────────────────────────────────────────────────────
-export default function OwnerApp() {
+export default function OwnerApp({ onRoleSwitch }) {
   const [lang, setLang] = useState(() => localStorage.getItem('app_lang') || 'en');
   const i18n = key => (LANG[lang] || LANG.en)[key] || key;
 
@@ -1295,6 +1295,11 @@ export default function OwnerApp() {
             {pinEnabled && (
               <button onClick={() => { sessionStorage.removeItem('owner_auth'); setUnlocked(false); }} style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: 8, padding: '4px 10px', cursor: 'pointer', color: C.sub, fontSize: 11 }}>
                 {i18n('lock')}
+              </button>
+            )}
+            {onRoleSwitch && (
+              <button onClick={onRoleSwitch} style={{ background: 'transparent', border: `1px solid ${C.border}`, borderRadius: 8, padding: '4px 10px', cursor: 'pointer', color: C.sub, fontSize: 11 }}>
+                ← Switch
               </button>
             )}
           </div>

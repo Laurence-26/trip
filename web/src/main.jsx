@@ -18,9 +18,8 @@ async function mount() {
     const { default: OwnerApp } = await import('./OwnerApp');
     Root = OwnerApp;
   } else {
-    const { BrowserRouter } = await import('react-router-dom');
     const { default: App } = await import('./App');
-    Root = () => <BrowserRouter><App /></BrowserRouter>;
+    Root = App;
     if ('serviceWorker' in navigator && import.meta.env.PROD) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').catch(() => {});

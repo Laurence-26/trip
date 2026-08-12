@@ -633,7 +633,7 @@ function BottomNav({ tab, setTab, badge, i18n }) {
 }
 
 // ── Main ───────────────────────────────────────────────────────
-export default function DriverApp() {
+export default function DriverApp({ onRoleSwitch }) {
   const [lang, setLang] = useState(() => localStorage.getItem('app_lang') || 'en');
   const i18n = key => (LANG[lang] || LANG.en)[key] || key;
   const toggleLang = () => {
@@ -849,7 +849,7 @@ export default function DriverApp() {
                   </span>
             }
             <button
-              onClick={() => { localStorage.removeItem('driver_name'); localStorage.removeItem('driver_fleet_code'); setDriverName(''); setFleetCode(''); }}
+              onClick={() => { localStorage.removeItem('driver_name'); localStorage.removeItem('driver_fleet_code'); setDriverName(''); setFleetCode(''); onRoleSwitch?.(); }}
               style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: C.sub, display: 'flex', alignItems: 'center' }}
             >
               <LogOut size={14} />
