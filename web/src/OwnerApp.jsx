@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import {
   Truck, Route, Fuel, FileSpreadsheet, Trash2,
   Users, TrendingUp, TrendingDown, WifiOff,
-  Lock, Copy, Check, RefreshCw, BarChart2, ArrowRight,
+  Lock, Copy, Check, RefreshCw, BarChart2, ArrowRight, ArrowLeft,
   Settings, Wallet, MapPin,
 } from 'lucide-react';
 
@@ -185,7 +185,7 @@ function SegPills({ options, value, onChange, accent = C.amber }) {
 }
 
 // ── PIN screen ─────────────────────────────────────────────────
-function PINScreen({ pin, onUnlock, i18n }) {
+function PINScreen({ pin, onUnlock, onBack, i18n }) {
   const [entered, setEntered] = useState('');
   const [err, setErr]         = useState(false);
   const [shake, setShake]     = useState(false);
@@ -197,8 +197,13 @@ function PINScreen({ pin, onUnlock, i18n }) {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 20px' }}>
+    <div style={{ minHeight: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 20px', position: 'relative' }}>
       <style>{GF}</style>
+      {onBack && (
+        <button onClick={onBack} style={{ position: 'absolute', top: 16, left: 16, background: 'transparent', border: 'none', cursor: 'pointer', color: C.sub, display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, padding: '8px 4px' }}>
+          <ArrowLeft size={16} /> Back
+        </button>
+      )}
       <div style={{ width: '100%', maxWidth: 340 }}>
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
           <div style={{ width: 72, height: 72, borderRadius: 22, background: C.amberSoft, border: `1px solid ${C.amber}33`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
@@ -1257,7 +1262,7 @@ export default function OwnerApp({ onRoleSwitch }) {
   ];
 
   const doUnlock = () => { sessionStorage.setItem('owner_auth', '1'); setUnlocked(true); };
-  if (!unlocked && pinEnabled) return <PINScreen pin={storedPin} onUnlock={doUnlock} i18n={i18n} />;
+  if (!unlocked && pinEnabled) return <PINScreen pin={storedPin} onUnlock={doUnlock} onBack={onRoleSwitch} i18n={i18n} />;
 
   const sel = { background: C.card2, border: `1px solid ${C.border}`, color: C.text, borderRadius: 9, padding: '7px 10px', fontSize: 13, cursor: 'pointer', outline: 'none' };
 

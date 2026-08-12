@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   Truck, Route, Fuel, Plus, WifiOff,
-  LogOut, Hash, Clock, ArrowRight, Navigation,
+  LogOut, Hash, Clock, ArrowRight, ArrowLeft, Navigation,
 } from 'lucide-react';
 import { Geolocation } from '@capacitor/geolocation';
 import { Capacitor } from '@capacitor/core';
@@ -203,11 +203,16 @@ function Fld({ label, children }) {
 }
 
 // ── Setup: Name ────────────────────────────────────────────────
-function NameSetup({ onSave, i18n, lang, toggleLang }) {
+function NameSetup({ onSave, i18n, lang, toggleLang, onBack }) {
   const [name, setName] = useState('');
   return (
     <div style={{ minHeight: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 20px', position: 'relative' }}>
       <style>{GF}</style>
+      {onBack && (
+        <button onClick={onBack} style={{ position: 'absolute', top: 16, left: 16, background: 'transparent', border: 'none', cursor: 'pointer', color: C.sub, display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, padding: '8px 4px' }}>
+          <ArrowLeft size={16} /> Back
+        </button>
+      )}
       <div style={{ position: 'absolute', top: 16, right: 16 }}><LangBtn lang={lang} toggle={toggleLang} /></div>
       <div style={{ width: '100%', maxWidth: 360 }}>
         <div style={{ textAlign: 'center', marginBottom: 36 }}>
@@ -818,7 +823,7 @@ export default function DriverApp({ onRoleSwitch }) {
     setPending(pendingCount(fleetCode));
   };
 
-  if (!driverName) return <NameSetup  onSave={n => { localStorage.setItem('driver_name', n); setDriverName(n); }} i18n={i18n} lang={lang} toggleLang={toggleLang} />;
+  if (!driverName) return <NameSetup  onSave={n => { localStorage.setItem('driver_name', n); setDriverName(n); }} i18n={i18n} lang={lang} toggleLang={toggleLang} onBack={onRoleSwitch} />;
   if (!fleetCode)  return <FleetSetup onSave={c => { localStorage.setItem('driver_fleet_code', c); setFleetCode(c); }} i18n={i18n} lang={lang} toggleLang={toggleLang} />;
 
   const todayCount = trips.filter(x => x.date === today()).length;
