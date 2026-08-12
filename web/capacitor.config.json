@@ -1,0 +1,6 @@
+﻿{
+    "appId":  "com.rockeagle.tracker",
+    "appName":  "Rock Eagle Tracker",
+    "webDir":  "dist-owner",
+    "bundledWebRuntime":  false
+}

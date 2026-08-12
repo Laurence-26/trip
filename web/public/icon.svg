@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#070A10"/>
+  <rect x="40" y="40" width="432" height="432" rx="80" fill="#F59E0B"/>
+  <!-- truck body -->
+  <rect x="80" y="220" width="240" height="130" rx="12" fill="#07090F"/>
+  <!-- cab -->
+  <rect x="320" y="258" width="116" height="92" rx="12" fill="#07090F"/>
+  <!-- windshield -->
+  <rect x="328" y="268" width="96" height="56" rx="8" fill="#F59E0B" opacity="0.3"/>
+  <!-- wheels -->
+  <circle cx="155" cy="365" r="38" fill="#07090F"/>
+  <circle cx="155" cy="365" r="20" fill="#F59E0B"/>
+  <circle cx="355" cy="365" r="38" fill="#07090F"/>
+  <circle cx="355" cy="365" r="20" fill="#F59E0B"/>
+  <!-- cargo lines -->
+  <rect x="100" y="240" width="200" height="8" rx="4" fill="#F59E0B" opacity="0.4"/>
+  <rect x="100" y="268" width="200" height="8" rx="4" fill="#F59E0B" opacity="0.4"/>
+  <rect x="100" y="296" width="200" height="8" rx="4" fill="#F59E0B" opacity="0.4"/>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "name": "Trips – Driver",
+  "short_name": "Trips",
+  "description": "Log trips and share your location with your fleet owner",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#070A10",
+  "theme_color": "#F59E0B",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
