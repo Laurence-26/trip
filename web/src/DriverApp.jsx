@@ -243,7 +243,7 @@ function NameSetup({ onSave, i18n, lang, toggleLang, onBack }) {
 }
 
 // ── Setup: Fleet code ──────────────────────────────────────────
-function FleetSetup({ onSave, i18n, lang, toggleLang }) {
+function FleetSetup({ onSave, i18n, lang, toggleLang, onBack }) {
   const [code, setCode] = useState('');
   const [err, setErr]   = useState(false);
   const attempt = () => {
@@ -254,6 +254,9 @@ function FleetSetup({ onSave, i18n, lang, toggleLang }) {
   return (
     <div style={{ minHeight: '100vh', background: C.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 20px', position: 'relative' }}>
       <style>{GF}</style>
+      <button onClick={onBack} style={{ position: 'absolute', top: 16, left: 16, background: 'transparent', border: 'none', cursor: 'pointer', color: C.sub, display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, padding: '8px 4px' }}>
+        <ArrowLeft size={16} /> Back
+      </button>
       <div style={{ position: 'absolute', top: 16, right: 16 }}><LangBtn lang={lang} toggle={toggleLang} /></div>
       <div style={{ width: '100%', maxWidth: 360 }}>
         <div style={{ textAlign: 'center', marginBottom: 36 }}>
@@ -824,7 +827,7 @@ export default function DriverApp({ onRoleSwitch }) {
   };
 
   if (!driverName) return <NameSetup  onSave={n => { localStorage.setItem('driver_name', n); setDriverName(n); }} i18n={i18n} lang={lang} toggleLang={toggleLang} onBack={onRoleSwitch} />;
-  if (!fleetCode)  return <FleetSetup onSave={c => { localStorage.setItem('driver_fleet_code', c); setFleetCode(c); }} i18n={i18n} lang={lang} toggleLang={toggleLang} />;
+  if (!fleetCode)  return <FleetSetup onSave={c => { localStorage.setItem('driver_fleet_code', c); setFleetCode(c); }} i18n={i18n} lang={lang} toggleLang={toggleLang} onBack={() => { localStorage.removeItem('driver_name'); setDriverName(''); }} />;
 
   const todayCount = trips.filter(x => x.date === today()).length;
 
